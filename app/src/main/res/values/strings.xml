@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lokmart</string>
+    <string name="connection_error">"Connection error "</string>
+    <string name="error">"An error occured "</string>
+    <string name="invalid_credentials">Invalid credentials</string>
+    <string name="fragment_onboarding_text">NEXT</string>
+    <string name="onboarding_title_0">Welcome to LokMart!\\nGrocery Applications</string>
+    <string name="onboarding_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
+    <string name="fragment_onboarding_get_string">Get Started\n</string>
+    <string name="fragment_onboarding_next">Next</string>
+</resources>

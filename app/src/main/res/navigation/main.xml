@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main.xml"
+    app:startDestination="@id/onBoardingFragment">
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.oybekdev.lokmart.presentation.sign_in.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in"
+        />
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.oybekdev.lokmart.presentation.onboarding.OnBoardingFragment"
+        android:label="OnBoardingFragment"
+        tools:layout="@layout/fragment_onboarding"
+        >
+
+        <action android:id="@+id/toSignInFragment"
+            app:destination="@+id/signInFragment"/>
+    </fragment>
+</navigation>
