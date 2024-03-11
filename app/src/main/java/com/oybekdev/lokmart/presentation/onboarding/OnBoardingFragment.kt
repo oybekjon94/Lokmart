@@ -6,22 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.oybekdev.lokmart.R
+import com.oybekdev.lokmart.R.dimen.dp_10
 import com.oybekdev.lokmart.databinding.FragmentOnboardingBinding
+import com.oybekdev.lokmart.utils.clearLightStatusBar
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnBoardingFragment:Fragment() {
     private lateinit var binding: FragmentOnboardingBinding
     private val adapter = OnBoardingAdapter()
+    private val viewModel by viewModels<OnboardingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOnboardingBinding.inflate(inflater)
         return binding.root
     }
@@ -33,16 +39,17 @@ class OnBoardingFragment:Fragment() {
     }
 
     private fun initUi() = with(binding) {
+        clearLightStatusBar()
         pager.adapter = adapter
 
         indicatorView.apply {
             val normalColor = ContextCompat.getColor(requireContext(),R.color.indicator_unchecked)
             val checkedColor = ContextCompat.getColor(requireContext(),R.color.indicator_checked)
             setSliderColor(normalColor, checkedColor)
-            setSliderWidth(resources.getDimension(R.dimen.dp_10))
+            setSliderWidth(resources.getDimension(dp_10))
             setSliderHeight(resources.getDimension(R.dimen.dp_8))
             setSlideMode(IndicatorSlideMode.WORM)
-            setIndicatorStyle(IndicatorStyle.CIRCLE)
+            setIndicatorStyle(IndicatorStyle.ROUND_RECT)
             setPageSize(adapter.itemCount)
             notifyDataChanged()
         }
@@ -70,6 +77,7 @@ class OnBoardingFragment:Fragment() {
 
         next.setOnClickListener {
             if (pager.currentItem == adapter.itemCount-1){
+                viewModel.onboarded()
                 findNavController().navigate(OnBoardingFragmentDirections.toSignInFragment())
             }else{
                 pager.setCurrentItem(pager.currentItem+1, true)
@@ -77,4 +85,4 @@ class OnBoardingFragment:Fragment() {
         }
     }
 }
-//55:13
+//47:07

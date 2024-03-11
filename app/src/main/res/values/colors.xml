@@ -5,4 +5,12 @@
     <color name="dark_text">#303733</color>
     <color name="indicator_unchecked">#BFC9DA</color>
     <color name="indicator_checked">#F97941</color>
+    <color name="soft_gray">#7D8FAB</color>
+    <color name="orange">#FA662E</color>
+    <color name="gray_1">#E8ECF2</color>
+    <color name="dark">#303733</color>
+    <color name="purple_500">#672AB9</color>
+    <color name="purple_700">#550DB6</color>
+    <color name="teal_200">#168774</color>
+    <color name="teal_700">#065647</color>
 </resources>

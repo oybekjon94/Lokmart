@@ -2,7 +2,7 @@ package com.oybekdev.lokmart.data.api.auth.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class SignInResponse(
+data class AuthResponse(
     @SerializedName("user")
     val user: UserDto,
     @SerializedName("token")

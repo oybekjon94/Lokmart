@@ -24,7 +24,8 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             loading.postValue(true)
             try {
-                authRepository.signIn(username, password)
+                authRepository.signUp(username, password)
+                events.postValue(Event.NavigateToHome)
             }catch (e:Exception){
                 when{
                     e is HttpException && e.code() == 404 -> events.postValue(Event.InvalidCredentials)
@@ -41,5 +42,6 @@ class SignInViewModel @Inject constructor(
         object InvalidCredentials:Event()
         object ConnectionError:Event()
         object Error:Event()
+        object NavigateToHome:Event()
     }
 }
