@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.oybekdev.lokmart.R
@@ -80,6 +81,10 @@ class HomeFragment:Fragment() {
             R.dimen.viewpager_current_item_horizontal_margin
         )
         banners.addItemDecoration(itemDecoration)
+
+        showAll.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.toCategoriesFragment())
+        }
     }
 
     private fun subscribeToLiveData() = with(binding){
@@ -122,7 +127,7 @@ class HomeFragment:Fragment() {
 
     }
     private fun onCategoryClick(category: Category){
-
+        findNavController().navigate(HomeFragmentDirections.toProductFragment(category))
     }
     private fun showAll(section:Section){
 

@@ -34,4 +34,3 @@ class CategoriesAdapter(
         holder.bind(categories[position])
     }
 }
-//35:18

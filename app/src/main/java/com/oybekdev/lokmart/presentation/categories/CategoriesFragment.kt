@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.oybekdev.lokmart.data.api.product.dto.Category
 import com.oybekdev.lokmart.databinding.FragmentCategoriesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +43,7 @@ class CategoriesFragment:Fragment() {
             error.root.isVisible = it
         }
         viewModel.categories.observe(viewLifecycleOwner){
-
+            categories.adapter = CategoriesAdapter(it,this@CategoriesFragment::onCategoryClick)
         }
     }
 
@@ -50,5 +51,12 @@ class CategoriesFragment:Fragment() {
         back.setOnClickListener{
             findNavController().popBackStack()
         }
+        error.retry.setOnClickListener {
+            viewModel.getCategories()
+        }
+    }
+
+    private fun onCategoryClick(category:Category){
+        findNavController().navigate(CategoriesFragmentDirections.toProductFragment(category))
     }
 }

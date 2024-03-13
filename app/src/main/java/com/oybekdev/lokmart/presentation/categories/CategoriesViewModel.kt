@@ -18,6 +18,10 @@ class CategoriesViewModel @Inject constructor(
     val error = MutableLiveData(false)
     val categories = MutableLiveData<List<Category>>()
 
+    init {
+        getCategories()
+    }
+
     fun getCategories() = viewModelScope.launch {
         loading.postValue(true)
         error.postValue(false)
