@@ -31,6 +31,7 @@
     <string name="fragment_home_good_morning">Good morning</string>
     <string name="fragment_home_categories">Categories</string>
     <string name="show_all">Show all</string>
+    <string name="clear_all">Clear All</string>
     <string name="item_product_ratings_count">%d ratings</string>
     <string name="fragment_item_product_discount">%d%% OFF</string>
     <string name="error_loading">an error occured...</string>
@@ -41,4 +42,7 @@
     <string name="price_striked"><strike>$%.1f</strike></string>
     <string name="fragment_categories_title">Categories</string>
     <string name="item_category_counts">%d items</string>
+    <string name="fragment_search_title">Search</string>
+    <string name="fragment_search_recent">Recent search</string>
+    <string name="fragment_search_result">Search Result</string>
 </resources>

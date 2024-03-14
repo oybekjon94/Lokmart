@@ -3,6 +3,7 @@ package com.oybekdev.lokmart.presentation.products
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -11,6 +12,7 @@ import com.oybekdev.lokmart.data.api.product.dto.Product
 import com.oybekdev.lokmart.domain.model.ProductQuery
 import com.oybekdev.lokmart.domain.repo.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,11 +30,11 @@ class ProductsViewModels @Inject constructor(
 
     }
 
-    fun getProducts(){
+    fun getProducts() = viewModelScope.launch{
         val query = ProductQuery(category = category.value)
         val products = productRepository.getProducts(query)
-        this.products.addSource(products){
-            this.products.postValue(it)
+        this@ProductsViewModels.products.addSource(products){
+            this@ProductsViewModels.products.postValue(it)
         }
     }
 

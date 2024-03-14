@@ -77,6 +77,19 @@
             app:argType="com.oybekdev.lokmart.data.api.product.dto.Category"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.oybekdev.lokmart.presentation.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+
+        <argument
+            android:name="category"
+            app:argType="com.oybekdev.lokmart.data.api.product.dto.Category"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
+
     <action
         android:id="@+id/to_onboardingFragment"
         app:destination="@id/onBoardingFragment"
