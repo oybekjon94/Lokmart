@@ -52,6 +52,10 @@
         <action
             android:id="@+id/to_productFragment"
             app:destination="@id/productFragment"/>
+
+        <action
+            android:id="@+id/to_searchFragment"
+            app:destination="@id/searchFragment"/>
     </fragment>
 
     <fragment
@@ -75,6 +79,10 @@
         <argument
             android:name="category"
             app:argType="com.oybekdev.lokmart.data.api.product.dto.Category"/>
+
+        <action
+            android:id="@+id/to_searchFragment"
+            app:destination="@id/searchFragment"/>
     </fragment>
 
     <fragment

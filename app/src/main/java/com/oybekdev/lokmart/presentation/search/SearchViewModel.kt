@@ -1,5 +1,6 @@
 package com.oybekdev.lokmart.presentation.search
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,17 +23,16 @@ class SearchViewModel @Inject constructor(
 ):ViewModel() {
 
     val loading = MutableLiveData(false)
-    val products = MediatorLiveData<PagingData<Product>>()
-    val query = MutableLiveData(ProductQuery())
+    val products = MutableLiveData<PagingData<Product>>()
+    private val query = MutableLiveData(ProductQuery())
     val recents = MutableLiveData<List<String>>()
 
     init {
         getRecents()
     }
     private fun getProducts() = viewModelScope.launch{
-        val products = productRepository.getProducts(query.value!!)
-        this@SearchViewModel.products.addSource(products){
-            this@SearchViewModel.products.postValue(it)
+        productRepository.getProducts(query.value!!).collect {
+            products.postValue(it)
         }
     }
 
@@ -43,6 +43,7 @@ class SearchViewModel @Inject constructor(
 
     fun setSearch(search:String){
         query.postValue(query.value!!.copy(search = search))
+        addRecents(search)
         getProducts()
     }
 
@@ -59,5 +60,9 @@ class SearchViewModel @Inject constructor(
 
     fun clearRecents() = viewModelScope.launch {
         productRepository.clearRecents()
+    }
+
+    private fun addRecents(search:String) = viewModelScope.launch {
+        productRepository.addRecent(search)
     }
 }

@@ -31,14 +31,7 @@ class ProductRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCategories() = productApi.getCategories()
-    override suspend fun getProducts(query: ProductQuery):LiveData<PagingData<Product>>{
-        query.search?.let {
-            val recents = (recentStore.get() ?: emptyArray()).toMutableList()
-            recents.add(0,it)
-            recentStore.set(recents.toTypedArray())
-        }
-
-        return Pager(
+    override fun getProducts(query: ProductQuery) = Pager(
         config = PagingConfig(
             pageSize = 10,
             prefetchDistance = 10,
@@ -49,9 +42,14 @@ class ProductRepositoryImpl @Inject constructor(
         pagingSourceFactory = {
             ProductPagingSource(productApi, query)
         }
-    ).liveData
-    }
+    ).flow
 
-    override fun getRecents() = recentStore.getFlow().filterNotNull().map { it.toList() }
+    override fun getRecents() = recentStore.getFlow().map { it?.toList() ?: emptyList() }
     override suspend fun clearRecents() = recentStore.clear()
+    override suspend fun addRecent(search: String) {
+        val recents = (recentStore.get() ?: emptyArray()).toMutableList()
+        recents.remove(search)
+        recents.add(0,search)
+        recentStore.set(recents.toTypedArray())
+    }
 }

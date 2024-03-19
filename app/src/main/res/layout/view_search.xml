@@ -19,6 +19,7 @@
         android:drawablePadding="16dp"
         android:paddingHorizontal="25dp"
         android:imeOptions="actionSearch"
+        android:inputType="text"
         app:layout_constraintEnd_toStartOf="@id/filter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

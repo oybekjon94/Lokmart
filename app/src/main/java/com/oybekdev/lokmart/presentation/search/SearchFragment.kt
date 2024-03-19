@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.PagingData
 import com.oybekdev.lokmart.data.api.product.dto.Product
 import com.oybekdev.lokmart.databinding.FragmentSearchBinding
 import com.oybekdev.lokmart.presentation.search.adapters.RecentsAdapter
@@ -66,10 +67,12 @@ class SearchFragment:Fragment() {
         }
         viewModel.recents.observe(viewLifecycleOwner){
             recents.adapter = RecentsAdapter(it,this@SearchFragment::onRecentClick)
+            isRecentsVisible(searchContainer.search.hasFocus())
         }
     }
 
     private fun initUi() = with(binding){
+        searchContainer.search.requestFocus()
         showKeyboard()
 
         close.setOnClickListener {
@@ -81,6 +84,11 @@ class SearchFragment:Fragment() {
         searchContainer.search.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH){
                 viewModel.setSearch(searchContainer.search.text.toString())
+
+                viewLifecycleOwner.lifecycleScope.launch {
+                    adapter.submitData(PagingData.empty())
+                }
+
                 hideKeyboard()
                 searchContainer.search.clearFocus()
                 return@OnEditorActionListener true
@@ -89,13 +97,17 @@ class SearchFragment:Fragment() {
         })
 
         searchContainer.search.setOnFocusChangeListener{view, focused ->
-            listOf(recents,recentTitle,clear).forEach{
-                it.isVisible = focused
-            }
+            isRecentsVisible(focused)
         }
 
         clear.setOnClickListener {
             viewModel.clearRecents()
+        }
+    }
+
+    private fun FragmentSearchBinding.isRecentsVisible(focused: Boolean) {
+        listOf(recents, recentTitle, clear).forEach {
+            it.isVisible = viewModel.recents.value.isNullOrEmpty().not() && focused
         }
     }
 

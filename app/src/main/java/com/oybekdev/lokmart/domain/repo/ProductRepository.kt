@@ -12,8 +12,10 @@ import java.util.concurrent.Flow
 interface ProductRepository {
     suspend fun getHome():HomeResponse
     suspend fun getCategories():List<Category>
-    suspend fun getProducts(query: ProductQuery):LiveData<PagingData<Product>>
+    fun getProducts(query: ProductQuery):kotlinx.coroutines.flow.Flow<PagingData<Product>>
     fun getRecents(): kotlinx.coroutines.flow.Flow<List<String>>
 
     suspend fun clearRecents()
+
+    suspend fun addRecent(search:String)
 }

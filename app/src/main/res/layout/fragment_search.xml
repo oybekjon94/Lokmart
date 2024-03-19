@@ -43,7 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="17dp"
-        android:visibility="gone"
         android:fontFamily="@font/bold"
         android:text="@string/fragment_search_recent"
         android:textColor="@color/dark"
@@ -58,7 +57,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:visibility="gone"
         android:drawableEnd="@drawable/ic_right"
         android:fontFamily="@font/semi_bold"
         android:text="@string/clear_all"
@@ -71,9 +69,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recents"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHeight_max="128dp"
         android:layout_marginTop="8dp"
-        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/recentTitle"
         tools:listitem="@layout/item_recent" />

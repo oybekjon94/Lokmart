@@ -13,6 +13,7 @@ import com.oybekdev.lokmart.domain.repo.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -55,7 +56,7 @@ class AuthRepositoryImpl @Inject constructor(
                 sendDestination()
             }
         }
-    }
+    }.distinctUntilChanged()
 
     override suspend fun onboarded() = onboardedStore.set(true)
 
