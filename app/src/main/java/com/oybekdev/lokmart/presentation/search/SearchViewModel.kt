@@ -24,7 +24,7 @@ class SearchViewModel @Inject constructor(
 
     val loading = MutableLiveData(false)
     val products = MutableLiveData<PagingData<Product>>()
-    private val query = MutableLiveData(ProductQuery())
+    val query = MutableLiveData(ProductQuery())
     val recents = MutableLiveData<List<String>>()
 
     init {
@@ -64,5 +64,10 @@ class SearchViewModel @Inject constructor(
 
     private fun addRecents(search:String) = viewModelScope.launch {
         productRepository.addRecent(search)
+    }
+
+    fun setQuery(query:ProductQuery){
+        this.query.postValue(query)
+        getProducts()
     }
 }

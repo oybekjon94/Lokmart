@@ -8,6 +8,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.PagingData
 import com.oybekdev.lokmart.data.api.product.dto.Product
 import com.oybekdev.lokmart.databinding.FragmentSearchBinding
+import com.oybekdev.lokmart.domain.model.ProductQuery
+import com.oybekdev.lokmart.presentation.filter.FilterFragment
+import com.oybekdev.lokmart.presentation.search.SearchFragmentDirections.*
 import com.oybekdev.lokmart.presentation.search.adapters.RecentsAdapter
 import com.oybekdev.lokmart.presentation.search.adapters.SearchProductsAdapter
 import com.oybekdev.lokmart.utils.hideKeyboard
@@ -79,6 +84,7 @@ class SearchFragment:Fragment() {
             findNavController().popBackStack()
         }
 
+
         products.adapter = adapter
 
         searchContainer.search.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
@@ -103,6 +109,16 @@ class SearchFragment:Fragment() {
         clear.setOnClickListener {
             viewModel.clearRecents()
         }
+
+        searchContainer.filter.setOnClickListener{
+            val query = viewModel.query.value ?: ProductQuery()
+            findNavController().navigate(toFilterFragment(query))
+        }
+
+        setFragmentResultListener(FilterFragment.REQUEST_KEY){_, result ->
+            val query = result.getParcelable<ProductQuery>(FilterFragment.RESULT_KEY)
+            viewModel.setQuery(query ?: return@setFragmentResultListener)
+        }
     }
 
     private fun FragmentSearchBinding.isRecentsVisible(focused: Boolean) {
@@ -120,7 +136,7 @@ class SearchFragment:Fragment() {
     }
 
     private fun onRecentClick(recent:String){
-
+        viewModel.setSearch(recent)
+        binding.searchContainer.search.setText(recent)
     }
 }
-//49:14

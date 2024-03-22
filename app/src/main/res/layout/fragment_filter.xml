@@ -71,8 +71,8 @@
             app:layout_constraintTop_toBottomOf="@id/rangeTitle"
             android:layout_marginTop="32dp"
             android:layout_marginHorizontal="24dp"
-            android:valueFrom="0"
-            android:valueTo="10000" />
+            android:valueFrom="0.0"
+            android:valueTo="10000.0" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/priceDivider"
@@ -255,7 +255,7 @@
             />
 
         <CheckBox
-            android:id="@+id/discountCheckBox"
+            android:id="@+id/discountSort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/fragment_filter_discount"
@@ -265,12 +265,12 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"
             app:layout_constraintTop_toBottomOf="@id/otherTitle"
-            app:layout_constraintEnd_toStartOf="@id/freeShippingCheckBox"
+            app:layout_constraintEnd_toStartOf="@id/shippingSort"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="31dp"/>
 
         <CheckBox
-            android:id="@+id/freeShippingCheckBox"
+            android:id="@+id/shippingSort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/fragment_filter_free_shipping"
@@ -278,7 +278,7 @@
             android:textColor="@color/dark"
             android:fontFamily="@font/medium"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/discountCheckBox"
+            app:layout_constraintStart_toEndOf="@id/discountSort"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/otherTitle"
             android:layout_marginEnd="32dp"
@@ -286,7 +286,7 @@
 
 
         <CheckBox
-            android:id="@+id/voucherCheckBox"
+            android:id="@+id/voucherSort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/fragment_filter_voucher"
@@ -295,13 +295,13 @@
             android:fontFamily="@font/medium"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"
-            app:layout_constraintTop_toBottomOf="@id/discountCheckBox"
-            app:layout_constraintEnd_toStartOf="@id/samedayCheckBox"
+            app:layout_constraintTop_toBottomOf="@id/discountSort"
+            app:layout_constraintEnd_toStartOf="@id/deliverySort"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="31dp"/>
 
         <CheckBox
-            android:id="@+id/samedayCheckBox"
+            android:id="@+id/deliverySort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/fragment_filter_sameDay_delivery"
@@ -309,9 +309,9 @@
             android:textColor="@color/dark"
             android:fontFamily="@font/medium"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/voucherCheckBox"
+            app:layout_constraintStart_toEndOf="@id/voucherSort"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/freeShippingCheckBox"
+            app:layout_constraintTop_toBottomOf="@id/shippingSort"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="31dp"/>
 
@@ -323,7 +323,7 @@
             android:layout_marginHorizontal="32dp"
             app:dividerColor="@color/gray_1"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/voucherCheckBox"
+            app:layout_constraintTop_toBottomOf="@id/voucherSort"
             android:layout_marginTop="27dp"/>
 
 
@@ -352,7 +352,7 @@
             android:layout_marginHorizontal="32dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/sign_in"
+            android:id="@+id/apply"
             android:layout_width="match_parent"
             android:layout_height="76dp"
             android:layout_marginHorizontal="32dp"
@@ -360,7 +360,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="24dp"
             android:background="@drawable/button_background"
-            android:text="@string/fragment_sign_in_button"
+            android:text="@string/fragment_filter_button"
             app:layout_constraintTop_toBottomOf="@id/categoriesTitle"
             app:backgroundTint="@null"
             android:textSize="16sp"

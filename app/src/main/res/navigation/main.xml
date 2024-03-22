@@ -96,6 +96,10 @@
             app:argType="com.oybekdev.lokmart.data.api.product.dto.Category"
             app:nullable="true"
             android:defaultValue="@null"/>
+
+        <action
+            android:id="@+id/to_filterFragment"
+            app:destination="@+id/filterFragment"/>
     </fragment>
 
     <action
@@ -113,4 +117,15 @@
         app:destination="@+id/homeFragment"
         app:popUpTo="@id/main"/>
 
+    <fragment
+        android:id="@+id/filterFragment"
+        tools:layout="@layout/fragment_filter"
+        android:name="com.oybekdev.lokmart.presentation.filter.FilterFragment"
+        android:label="FilterFragment">
+
+        <argument
+            android:name="filter"
+            app:argType="com.oybekdev.lokmart.domain.model.ProductQuery"
+            />
+    </fragment>
 </navigation>

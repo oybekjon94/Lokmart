@@ -62,4 +62,6 @@
     <string name="fragment_filter_free_shipping">Free Shipping</string>
     <string name="fragment_filter_voucher">Voucher</string>
     <string name="fragment_filter_sameDay_delivery">Same day delivery</string>
+    <string name="fragment_filter_categories_error">Error filter categories</string>
+    <string name="fragment_filter_button">Apply</string>
 </resources>
