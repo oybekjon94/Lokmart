@@ -18,8 +18,8 @@ interface ProductApi {
     suspend fun getProducts(
         @Query("categories_id") categoryId:String?,
         @Query("search") search:String?,
-        @Query("from") from :Int?,
-        @Query("to") to :Int?,
+        @Query("from") from :Float?,
+        @Query("to") to :Float?,
         @Query("rating") rating :Int?,
         @Query("discount") discount :Int?,
         @Query("sort") sort :String?,
@@ -27,4 +27,3 @@ interface ProductApi {
         @Query("size") size:Int
     ):List<Product>
 }
-//1:13:24

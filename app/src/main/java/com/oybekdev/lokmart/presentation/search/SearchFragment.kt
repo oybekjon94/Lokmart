@@ -118,6 +118,9 @@ class SearchFragment:Fragment() {
         setFragmentResultListener(FilterFragment.REQUEST_KEY){_, result ->
             val query = result.getParcelable<ProductQuery>(FilterFragment.RESULT_KEY)
             viewModel.setQuery(query ?: return@setFragmentResultListener)
+            searchContainer.search.clearFocus()
+            hideKeyboard()
+            isRecentsVisible(false)
         }
     }
 
@@ -140,3 +143,4 @@ class SearchFragment:Fragment() {
         binding.searchContainer.search.setText(recent)
     }
 }
+//34:09

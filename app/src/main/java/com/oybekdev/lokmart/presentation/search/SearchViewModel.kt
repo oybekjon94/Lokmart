@@ -8,11 +8,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.oybekdev.lokmart.data.api.product.dto.Category
 import com.oybekdev.lokmart.data.api.product.dto.Product
 import com.oybekdev.lokmart.domain.model.ProductQuery
 import com.oybekdev.lokmart.domain.repo.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,7 +33,7 @@ class SearchViewModel @Inject constructor(
         getRecents()
     }
     private fun getProducts() = viewModelScope.launch{
-        productRepository.getProducts(query.value!!).collect {
+        productRepository.getProducts(query.value!!).cachedIn(viewModelScope).collect {
             products.postValue(it)
         }
     }
@@ -67,7 +69,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun setQuery(query:ProductQuery){
-        this.query.postValue(query)
+        this.query.value = query
         getProducts()
     }
 }
