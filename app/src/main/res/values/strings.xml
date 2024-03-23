@@ -66,4 +66,6 @@
     <string name="fragment_filter_button">Apply</string>
     <string name="fragment_product_reviews">%.1f (%d reviews)</string>
     <string name="fragment_product_free_delivery">Free delivery</string>
+    <string name="fragment_related_product">Related product</string>
+    <string name="fragment_product_add">ADD TO CART</string>
 </resources>
