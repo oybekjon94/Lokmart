@@ -128,4 +128,15 @@
             app:argType="com.oybekdev.lokmart.domain.model.ProductQuery"
             />
     </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        tools:layout="@layout/fragment_detail"
+        android:name="com.oybekdev.lokmart.presentation.detail.DetailFragment"
+        android:label="DetailFragment">
+
+        <argument
+            android:name="id"
+            app:argType="string"/>
+    </fragment>
 </navigation>

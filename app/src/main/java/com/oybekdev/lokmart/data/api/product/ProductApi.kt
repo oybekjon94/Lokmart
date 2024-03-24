@@ -1,9 +1,11 @@
 package com.oybekdev.lokmart.data.api.product
 
 import com.oybekdev.lokmart.data.api.product.dto.Category
+import com.oybekdev.lokmart.data.api.product.dto.Detail
 import com.oybekdev.lokmart.data.api.product.dto.HomeResponse
 import com.oybekdev.lokmart.data.api.product.dto.Product
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ProductApi {
@@ -26,4 +28,9 @@ interface ProductApi {
         @Query("page") page:Int,
         @Query("size") size:Int
     ):List<Product>
+
+    @GET("products/{id}")
+    suspend fun getProduct(
+        @Path("id") id:String
+    ):Detail
 }

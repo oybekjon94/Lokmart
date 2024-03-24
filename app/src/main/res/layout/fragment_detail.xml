@@ -345,4 +345,12 @@
         app:layout_constraintTop_toBottomOf="@id/buttonDivider"
         />
 
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/view_loading"/>
+
+    <include
+        android:id="@+id/error"
+        layout="@layout/view_error"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

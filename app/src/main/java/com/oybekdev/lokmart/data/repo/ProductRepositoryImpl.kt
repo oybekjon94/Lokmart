@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.oybekdev.lokmart.data.api.product.ProductApi
 import com.oybekdev.lokmart.data.api.product.dto.Category
+import com.oybekdev.lokmart.data.api.product.dto.Detail
 import com.oybekdev.lokmart.data.api.product.dto.HomeResponse
 import com.oybekdev.lokmart.data.api.product.dto.Product
 import com.oybekdev.lokmart.data.api.product.paging.ProductPagingSource
@@ -52,4 +53,6 @@ class ProductRepositoryImpl @Inject constructor(
         recents.add(0,search)
         recentStore.set(recents.toTypedArray())
     }
+
+    override suspend fun getProduct(id: String) = productApi.getProduct(id)
 }
